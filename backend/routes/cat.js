@@ -1,8 +1,11 @@
 const express = require("express");
 
 const catRouter = express.Router();
-const { addCat } = require("../controuler/cat");
+const { addCat,deleteCat,updateCat,getAll} = require("../controuler/cat");
 
-catRouter.post("/", addCat);
+catRouter.get("/allCats", getAll);
+catRouter.post("/addCat", addCat);
+catRouter.put("/updateCat/:cat_id", updateCat);
+catRouter.delete("/deleteCat", deleteCat);
 
 module.exports = catRouter;

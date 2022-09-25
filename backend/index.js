@@ -4,10 +4,11 @@ const connection = require("./model/db");
 const catRouter = require("./routes/cat");
 
 const app = express();
+app.use(express.json())
 
-app.use("/role", catRouter);
+app.use("/cat", catRouter);
 
-const PORT = 4000;
+const PORT = 5000;
 app.listen(PORT, () => {
   console.log(PORT);
 });
