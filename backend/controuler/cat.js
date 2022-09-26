@@ -57,7 +57,7 @@ const updateCat = (req, res) => {
 };
 
 const getAll = (req, res) => {
-  const query = `SELECT * FROM cat`;
+  const query = `SELECT * FROM cat WHERE IS_DELETED =0 `;
   connection.query(query, (err, result) => {
     if (err) {
       return res.status(500).json({ success: false, err });
