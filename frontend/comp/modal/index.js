@@ -9,9 +9,10 @@ import {
   View,
   TextInput,
 } from "react-native";
-
+//the id come from getcat comp we use it to send api to update cat info
+//openModal if it is true he will open the modal 
+//setOpenModal to set state value false so we can open the modal agian when we close it
 const Modalp = ({ id, openModal, setOpenModal, refresh, setCatrefresh }) => {
-  console.log(id);
   const [modalVisible, setModalVisible] = useState(false);
   const [Name, setName] = useState("");
   const [Breed, setBreed] = useState("");
