@@ -1,9 +1,16 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function AddCat({refresh ,setCatrefresh}) {
+export default function AddCat({ refresh, setCatrefresh }) {
   const [Name, setName] = useState("");
   const [Breed, setBreed] = useState("");
   const [Description, setDescription] = useState("");
@@ -18,13 +25,17 @@ export default function AddCat({refresh ,setCatrefresh}) {
   const addCat = () => {
     console.log(false);
     axios
-      .post("http://192.168.1.65:5000/cat/addCat", {
-        Name: Name,
-        Breed: Breed,
-        Description: Description,
-      })
+      .post(
+        "https://8829-2a01-9700-1034-6000-756b-1154-b102-27d4.eu.ngrok.io/cat/addCat",
+        {
+          Name: Name,
+          Breed: Breed,
+          Description: Description,
+        }
+      )
       .then((resulit) => {
-        refresh?setCatrefresh(false):setCatrefresh(true)
+        console.log(resulit);
+        refresh ? setCatrefresh(false) : setCatrefresh(true);
       })
       .catch((err) => {
         console.log(err);
@@ -32,18 +43,23 @@ export default function AddCat({refresh ,setCatrefresh}) {
   };
 
   return (
-    <View>
+    <View style={styles.centeredView}>
+      {input("Name", setName)}
+      {input("Breed", setBreed)}
+      {input("Description", setDescription)}
       <Button
         title="addcat"
         onPress={() => {
           addCat();
         }}
       />
-      <Text>from add</Text>
-      {input("Name", setName)}
-      {input("Breed", setBreed)}
-      {input("Description", setDescription)}
       <StatusBar style="auto" />
     </View>
   );
 }
+const styles = StyleSheet.create({
+  centeredView: {
+    margin: 20,
+    marginTop: 100,
+  },
+});
